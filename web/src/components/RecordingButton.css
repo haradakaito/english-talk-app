@@ -1,16 +1,16 @@
 .recording-button-container {
 position: fixed;
-bottom: 88px; /* フッターより上に余裕を持たせる */
+bottom: 88px;
 left: 0;
 right: 0;
 display: flex;
 justify-content: center;
 z-index: 1000;
-pointer-events: none; /* レイアウト上の邪魔を防ぐ */
+pointer-events: none;
 }
 
 .record-icon-button {
-font-size: 24px;
+font-size: 40px;
 background-color: #338eda;
 color: white;
 border: none;
