@@ -1,20 +1,19 @@
 import React from "react";
+import Header from "./components/Header.tsx";
+import Footer from "./components/Footer.tsx";
+import ChatArea from "./components/ChatArea.tsx";
+import RecordingButton from "./components/RecordingButton.tsx";
 import "./App.css";
 
 function App() {
   return (
     <div className="app-container">
-
-      <div className="chat-box">
-        <div className="chat-message user">
-          <strong></strong> Hello! How can I help you today?
-        </div>
-        <div className="chat-message ai">
-          <strong></strong> Hi! I need some assistance with my order.
-        </div>
+      <Header />
+      <div style={{ flex: 1 }}>
+        <ChatArea />
       </div>
-
-      <button className="record-button">Start Recording</button>
+      <RecordingButton />
+      <Footer />
     </div>
   );
 }
