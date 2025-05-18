@@ -1,6 +1,7 @@
 .app-header {
-background: linear-gradient(135deg, #1e2a44, #263959);
-padding: 24px 16px;
+background-color: #1e2a44;
+padding-top: 16px;
+padding-bottom: 12px;
 border-top-left-radius: 16px;
 border-top-right-radius: 16px;
 border-radius: 0;

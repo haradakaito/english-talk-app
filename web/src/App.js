@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      <div style={{ flex: 1 }}>
+      <div className="chat-scroll-area">
         <ChatArea />
       </div>
       <RecordingButton />
