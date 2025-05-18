@@ -29,9 +29,7 @@ const startRecording = async () => {
 
     mediaRecorder.onstop = () => {
         const audioBlob = new Blob(chunksRef.current, { type: "audio/webm" });
-        console.log("✅ 録音完了。サイズ:", audioBlob.size, "bytes");
 
-        // 🎧 テスト再生
         const url = URL.createObjectURL(audioBlob);
         const audio = new Audio(url);
         audio.play();
@@ -41,12 +39,11 @@ const startRecording = async () => {
     mediaRecorderRef.current = mediaRecorder;
     setIsRecording(true);
 
-    // ⏱ 自動停止タイマー（10秒）
     timeoutRef.current = setTimeout(() => {
         stopRecording();
     }, 10000);
     } catch (err) {
-    console.error("🎤 マイク使用エラー:", err);
+        console.error("Error accessing microphone: ", err);
     }
 };
 
