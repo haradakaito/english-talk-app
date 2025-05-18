@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./RecordingButton.css";
 import { FaMicrophone } from "react-icons/fa";
+import { sendAudio } from "../api/sendAudio.ts";
 
 const RecordingButton = () => {
 const [isRecording, setIsRecording] = useState(false);
@@ -20,19 +21,22 @@ const startRecording = async () => {
     try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     const mediaRecorder = new MediaRecorder(stream);
-
     chunksRef.current = [];
 
     mediaRecorder.ondataavailable = (e) => {
         if (e.data.size > 0) chunksRef.current.push(e.data);
     };
 
-    mediaRecorder.onstop = () => {
+    mediaRecorder.onstop = async () => {
         const audioBlob = new Blob(chunksRef.current, { type: "audio/webm" });
 
-        const url = URL.createObjectURL(audioBlob);
-        const audio = new Audio(url);
-        audio.play();
+        try {
+        const result = await sendAudio(audioBlob);
+        alert(`✅ API応答: ${result}`);
+        } catch (err) {
+        console.error("❌ APIエラー:", err);
+        alert("❌ APIエラーが発生しました");
+        }
     };
 
     mediaRecorder.start();
@@ -43,7 +47,7 @@ const startRecording = async () => {
         stopRecording();
     }, 10000);
     } catch (err) {
-        console.error("Error accessing microphone: ", err);
+    console.error("🎤 マイク使用エラー:", err);
     }
 };
 
