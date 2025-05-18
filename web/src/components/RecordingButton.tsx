@@ -6,7 +6,7 @@ const RecordingButton = () => {
 const [isRecording, setIsRecording] = useState(false);
 const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 const chunksRef = useRef<Blob[]>([]);
-const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+const timeoutRef = useRef<number | null>(null);
 
 const toggleRecording = async () => {
     if (isRecording) {
